@@ -1,0 +1,13 @@
+{
+  "name": "hello",
+  "scripts" : {
+    "test" : "jest"
+  },
+  "dependencies": {
+    "express" : "*"
+  },
+  "devDependencies": {
+    "supertest" : "*",
+    "jest" : "*"
+  }
+}

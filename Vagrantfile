@@ -13,7 +13,10 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
 
-  config.vm.synced_folder ".", "/vagrant", type: "smb"
+#  config.vm.synced_folder ".", "/vagrant", type: "smb"
+  config.vm.provider "virtualbox" do |v|
+     v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
+  end
 
   config.vm.define 'default' do |machine|
     machine.vm.box = "ubuntu/trusty64"
@@ -22,7 +25,7 @@ Vagrant.configure("2") do |config|
       ansible.playbook       = "cm/site.yml"
       ansible.verbose        = "vv"
     end
-    machine.vm.network "forwarded_port", guest: 3001, host: 3001
+    machine.vm.network "forwarded_port", guest: 3000, host: 3000
   end
 
 
